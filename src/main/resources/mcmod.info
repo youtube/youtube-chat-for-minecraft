@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ytchat",
+  "name": "YouTube Chat",
+  "description": "Enables interaction with YouTube Gaming chat.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["jimrogers"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

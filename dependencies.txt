@@ -1,0 +1,35 @@
+configurations {
+    embed
+    compile.extendsFrom(embed)
+}
+
+dependencies {
+    compile 'com.google.apis:google-api-services-youtube:v3-rev183-1.22.0'
+    compile 'com.google.oauth-client:google-oauth-client-jetty:1.22.0'
+    compile 'com.google.api-client:google-api-client-java6:1.22.0'
+    compile 'com.google.http-client:google-http-client-jackson2:1.22.0'
+    embed fileTree(dir: 'build/dependencies', include: '*.jar')
+}
+
+task saveDependencies << {
+    configurations.each { config ->
+        if (config.name == "default") {
+            config.each { f ->
+                if (!f.name.contains("Dummy")) {
+                    ant.copy (
+                        file: f,
+                        overwrite:true,
+                        todir:"${rootProject.projectDir}/build/dependencies")
+                }
+            }
+        }
+    }
+}
+
+jar {
+    from configurations.embed.collect {
+        exclude 'META-INF/LICENSE*'
+        exclude 'META-INF/NOTICE*'
+        it.isDirectory() ? it : zipTree(it)
+    }
+}
