@@ -22,20 +22,20 @@ setup.gradle, then run the installMdk task:
   ./gradlew -b setup.gradle
   ```
 
-Next, setup the decompiled workspace and save the mod dependencies:
+Next, setup the decompiled workspace and save the build dependencies:
 
   ```
   ./gradlew setupDecompWorkspace
   ./gradlew saveDependencies
   ```
 
-Build the mod:
+Build the jar:
 
   ```
   ./gradlew build
   ```
 
-A single .jar file will be built to build/libs, e.g. ytchat-1.0.jar.
+A single .jar file will be output to build/libs, e.g. ytchat-1.0.0.jar.
 
 
 # Intellij Idea Setup
@@ -84,7 +84,7 @@ Copy the YouTube Chat jar to one these folders depending on your OS:
 
 ![Configuration](configuration.png)
 
-1.  With the YouTube Chat installed, open Minecraft with the forge profile.
+1.  With YouTube Chat installed, open Minecraft with the forge profile.
 2.  At the Minecraft main menu, select *Mods*.
 3.  Select *YouTube Chat*, and click *Config*. There are 2 settings:
   *  **Client Secret**: *(Required)* The client secret json downloaded from the
@@ -125,7 +125,8 @@ Add ytchat to the dependencies field in mcmod.info, e.g.:
   ```
   "dependencies": ["ytchat"]
   ```
-Get an instance of the YouTubeChatService interface:
+Get an instance of the [YouTubeChatService](https://github.com/youtube/youtube-chat-for-minecraft/blob/master/src/main/java/com/google/youtube/gaming/chat/YouTubeChatService.java)
+interface:
 
   ```java
   YouTubeChatService service = YouTubeChat.getService();
