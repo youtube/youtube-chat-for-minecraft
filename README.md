@@ -131,3 +131,7 @@ interface:
   ```java
   YouTubeChatService service = YouTubeChat.getService();
   ```
+## Discussion and Support
+
+Join the discussion group at 
+[https://groups.google.com/forum/#!forum/youtube-chat-for-minecraft](https://groups.google.com/forum/#!forum/youtube-chat-for-minecraft)
