@@ -18,6 +18,7 @@ package com.google.youtube.gaming.chat;
 
 import com.google.api.services.youtube.model.LiveChatMessageAuthorDetails;
 import com.google.api.services.youtube.model.LiveChatSuperChatDetails;
+
 import java.util.function.Consumer;
 
 /**

@@ -16,10 +16,10 @@
 
 package com.google.youtube.gaming.chat;
 
+import cpw.mods.fml.client.config.GuiConfig;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.client.config.GuiConfig;
 
 /**
  * Gui configuration for YouTube Chat.
@@ -28,7 +28,7 @@ public class YouTubeConfigurationGui extends GuiConfig {
   public YouTubeConfigurationGui(GuiScreen parentScreen) {
     super(
         parentScreen,
-        new ConfigElement(
+        new ConfigElement<Object>(
                 YouTubeConfiguration.getInstance()
                     .getConfig()
                     .getCategory(Configuration.CATEGORY_GENERAL))

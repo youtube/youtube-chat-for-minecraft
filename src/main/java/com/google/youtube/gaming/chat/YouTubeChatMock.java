@@ -18,16 +18,14 @@ package com.google.youtube.gaming.chat;
 
 import com.google.api.services.youtube.model.LiveChatMessageAuthorDetails;
 import com.google.api.services.youtube.model.LiveChatSuperChatDetails;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Nullable;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.ClientCommandHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An in-game command that will mock chat messages for testing. Usage:
@@ -49,26 +47,25 @@ public class YouTubeChatMock implements ICommand {
   }
 
   @Override
-  public String getName() {
+  public String getCommandName() {
     return COMMAND_NAME;
   }
 
   @Override
-  public String getUsage(ICommandSender sender) {
+  public String getCommandUsage(ICommandSender sender) {
     return COMMAND_NAME + " <mock author id> <mock input>";
   }
 
   @Override
-  public List<String> getAliases() {
+  public List getCommandAliases() {
     return aliases;
   }
 
   @Override
-  public void execute(MinecraftServer server, ICommandSender sender, String[] args)
-      throws CommandException {
+  public void processCommand(ICommandSender sender, String[] args) throws CommandException {
     StringBuilder builder = new StringBuilder();
     if (args.length < 2) {
-      showMessage(getUsage(sender), sender);
+      showMessage(getCommandUsage(sender), sender);
       return;
     }
 
@@ -89,13 +86,12 @@ public class YouTubeChatMock implements ICommand {
   }
 
   @Override
-  public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+  public boolean canCommandSenderUseCommand(ICommandSender sender) {
     return true;
   }
 
   @Override
-  public List<String> getTabCompletions(
-      MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
+  public List addTabCompletionOptions(ICommandSender p_71516_1_, String[] p_71516_2_) {
     return null;
   }
 
@@ -105,11 +101,11 @@ public class YouTubeChatMock implements ICommand {
   }
 
   @Override
-  public int compareTo(ICommand o) {
+  public int compareTo(Object o) {
     return 0;
   }
 
   private void showMessage(String message, ICommandSender sender) {
-    sender.sendMessage(new TextComponentString(message));
+    sender.addChatMessage(new ChatComponentText(message));
   }
 }

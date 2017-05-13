@@ -15,9 +15,9 @@
 */
 defaultTasks 'installMdk'
 
-def mdkVersion = '1.11.2-13.20.0.2259';
+def mdkVersion = '1.7.10-10.13.4.1614-1.7.10';
 
-def mdkFile = 'forge-' + mdkVersion + '-mdk.zip';
+def mdkFile = 'forge-' + mdkVersion + '-src.zip';
 def mdkUrl = 'http://files.minecraftforge.net/maven/net/minecraftforge/forge/' \
                 + mdkVersion \
                 + '/' \

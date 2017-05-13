@@ -38,7 +38,7 @@ import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.ChatComponentText;
 
 /**
  * Manages connection to the YouTube chat service, posting chat messages, deleting chat messages,
@@ -209,18 +209,10 @@ class ChatService implements YouTubeChatService {
               YouTube.LiveChatMessages.Insert liveChatInsert =
                   youtube.liveChatMessages().insert("snippet", liveChatMessage);
               LiveChatMessage response = liveChatInsert.execute();
-              final String messageId = response.getId();
-              Minecraft.getMinecraft()
-                  .addScheduledTask(
-                      new Runnable() {
-                        @Override
-                        public void run() {
-                          onComplete.accept(messageId);
-                        }
-                      });
+              onComplete.accept(response.getId());
             } catch (Throwable t) {
               onComplete.accept(null);
-              showMessage(t.getMessage(), Minecraft.getMinecraft().player);
+              showMessage(t.getMessage(), Minecraft.getMinecraft().thePlayer);
               t.printStackTrace();
             }
           }
@@ -241,9 +233,9 @@ class ChatService implements YouTubeChatService {
               YouTube.LiveChatMessages.Delete liveChatDelete =
                   youtube.liveChatMessages().delete(messageId);
               liveChatDelete.execute();
-              Minecraft.getMinecraft().addScheduledTask(onComplete);
+              onComplete.run();
             } catch (Throwable t) {
-              showMessage(t.getMessage(), Minecraft.getMinecraft().player);
+              showMessage(t.getMessage(), Minecraft.getMinecraft().thePlayer);
               t.printStackTrace();
               onComplete.run();
             }
@@ -277,24 +269,18 @@ class ChatService implements YouTubeChatService {
               final List<LiveChatMessage> messages = response.getItems();
 
               // Broadcast message to listeners on main thread
-              mc.addScheduledTask(
-                  new Runnable() {
-                    @Override
-                    public void run() {
-                      for (int i = 0; i < messages.size(); i++) {
-                        LiveChatMessage message = messages.get(i);
-                        LiveChatMessageSnippet snippet = message.getSnippet();
-                        broadcastMessage(
-                            message.getAuthorDetails(),
-                            snippet.getSuperChatDetails(),
-                            snippet.getDisplayMessage());
-                      }
-                    }
-                  });
+              for (int i = 0; i < messages.size(); i++) {
+                LiveChatMessage message = messages.get(i);
+                LiveChatMessageSnippet snippet = message.getSnippet();
+                broadcastMessage(
+                    message.getAuthorDetails(),
+                    snippet.getSuperChatDetails(),
+                    snippet.getDisplayMessage());
+              }
               System.out.println("POLL DELAY: " + response.getPollingIntervalMillis());
               poll(response.getPollingIntervalMillis());
             } catch (Throwable t) {
-              showMessage(t.getMessage(), Minecraft.getMinecraft().player);
+              showMessage(t.getMessage(), Minecraft.getMinecraft().thePlayer);
               t.printStackTrace();
             }
           }
@@ -318,6 +304,6 @@ class ChatService implements YouTubeChatService {
   }
 
   private void showMessage(String message, ICommandSender sender) {
-    sender.sendMessage(new TextComponentString(message));
+    sender.addChatMessage(new ChatComponentText(message));
   }
 }
