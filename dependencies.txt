@@ -15,7 +15,18 @@ task saveDependencies << {
     configurations.each { config ->
         if (config.name == "default") {
             config.each { f ->
-                if (!f.name.contains("Dummy")) {
+                // This needs to catch all the com.google.* jar files and
+                // their dependencies. Run ./gradlew dependencies to see
+                // the dependency tree. Also note this needs to catch lib 
+                // filenames, not the package names.
+                if (f.name.contains(".jar") 
+                    && (f.name.contains("google")
+                        || f.name.contains("jetty")
+                        || f.name.contains("http")
+                        || f.name.contains("commons-logging")
+                        || f.name.contains("commons-codec")
+                        || f.name.contains("servlet")
+                        || f.name.contains("jackson-core"))) {
                     ant.copy (
                         file: f,
                         overwrite:true,
