@@ -73,10 +73,13 @@ Copy the YouTube Chat jar to one these folders depending on your OS:
 
 1.  Create a project in the [Google API Console](https://console.developers.google.com/)
 
-2.  Open the [API Library](https://console.developers.google.com/apis/library?project=_)
+2.  Click *Create credentials*. Select *OAuth client ID* from the dropdown,
+followed by *Other* for the Application type.
+
+3.  Open the [API Library](https://console.developers.google.com/apis/library?project=_)
     and ensure that your application is registered to use the YouTube Data API.
 
-3.  Download the json credentials by clicking the following icon for your
+4.  Download the json credentials by clicking the following icon for your
   project: ![Download json](download_json.png)
 
 
