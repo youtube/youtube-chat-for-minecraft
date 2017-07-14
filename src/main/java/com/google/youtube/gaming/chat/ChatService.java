@@ -228,7 +228,7 @@ class ChatService implements YouTubeChatService {
   }
 
   public void deleteMessage(final String messageId, final Runnable onComplete) {
-    if (messageId == null || messageId.isEmpty()) {
+    if (messageId == null || messageId.isEmpty() || executor == null) {
       onComplete.run();
       return;
     }
