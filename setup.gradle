@@ -46,7 +46,7 @@ task updateMdk(dependsOn: 'stageMdk') {
         String text = buildGradle.getText('UTF-8')
         text = text.replaceAll('com.yourname.modid', 'com.google.youtube.ytchat')
         text = text.replaceAll('modid', 'ytchat')
-        text = text.replaceAll('1.0', '1.0.0')
+        text = text.replaceAll('1.0', '1.0.1')
         text = text.replace('repositories {', 'repositories {\n        mavenCentral()');
         text = text.replaceFirst(/\ndependencies\s?\{[^\}]+\}/, dependencyText);
         buildGradle.write(text, 'UTF-8')
