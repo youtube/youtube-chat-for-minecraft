@@ -15,7 +15,7 @@
 */
 defaultTasks 'installMdk'
 
-def mdkVersion = '1.11.2-13.20.0.2259';
+def mdkVersion = '1.12-14.21.1.2415';
 
 def mdkFile = 'forge-' + mdkVersion + '-mdk.zip';
 def mdkUrl = 'http://files.minecraftforge.net/maven/net/minecraftforge/forge/' \
@@ -46,7 +46,7 @@ task updateMdk(dependsOn: 'stageMdk') {
         String text = buildGradle.getText('UTF-8')
         text = text.replaceAll('com.yourname.modid', 'com.google.youtube.ytchat')
         text = text.replaceAll('modid', 'ytchat')
-        text = text.replaceAll('1.0', '1.0.1')
+        text = text.replaceAll('1\\.0', '1.0.1')
         text = text.replace('repositories {', 'repositories {\n        mavenCentral()');
         text = text.replaceFirst(/\ndependencies\s?\{[^\}]+\}/, dependencyText);
         buildGradle.write(text, 'UTF-8')
