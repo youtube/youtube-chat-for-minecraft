@@ -47,6 +47,7 @@ these steps to setup the project directory.
 
   ```
   ./gradlew idea
+  ./gradlew genIntellijRuns
   ```
 2.  Open the project folder with Intellij, and import the Gradle project
   when prompted.
