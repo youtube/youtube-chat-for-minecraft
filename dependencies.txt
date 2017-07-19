@@ -5,9 +5,10 @@ configurations {
 
 dependencies {
     compile group: 'com.google.guava', name: 'guava', version: '22.0'
-    compile 'com.google.apis:google-api-services-youtube:v3-rev183-1.22.0'
-    compile 'com.google.oauth-client:google-oauth-client-jetty:1.22.0'
-    compile 'com.google.http-client:google-http-client-jackson2:1.22.0'
+    compile group: 'com.google.apis', name: 'google-api-services-youtube', version: 'v3-rev183-1.22.0'
+    compile group: 'com.google.oauth-client', name: 'google-oauth-client-jetty', version: '1.22.0'
+    compile group: 'com.google.api-client', name: 'google-api-client', version: '1.22.0'
+    compile group: 'com.google.http-client', name: 'google-http-client', version: '1.22.0'
     embed fileTree(dir: 'build/dependencies', include: '*.jar')
 }
 
@@ -15,7 +16,7 @@ task saveDependencies << {
     configurations.each { config ->
         if (config.name == "default") {
             config.each { f ->
-                if (!f.name.contains("Dummy")) {
+                if (!f.name.contains("Dummy") && !f.name.contains("guava-jdk")) {
                     ant.copy (
                         file: f,
                         overwrite:true,
