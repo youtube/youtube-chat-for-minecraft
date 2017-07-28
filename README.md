@@ -79,11 +79,11 @@ followed by *Other* for the Application type.
 3.  Open the [API Library](https://console.developers.google.com/apis/library?project=_)
     and ensure that your application is registered to use the YouTube Data API.
 
-4.  Download the json credentials by clicking the following icon for your
+4.  Download the client ID JSON by clicking the following icon for your
   project: ![Download json](download_json.png)
 
 5.  Run the YouTube Chat jar from a terminal to obtain authorization credentials,
-pasting the json credentials when prompted:
+pasting the downloaded json when prompted:
 
 ```
 java -jar ytchat-1.0.3.jar login
