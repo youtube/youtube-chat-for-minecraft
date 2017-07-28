@@ -28,6 +28,9 @@ task saveDependencies << {
 }
 
 jar {
+    manifest {
+        attributes 'Main-Class': 'com.google.youtube.gaming.chat.Main'
+    }
     from configurations.embed.collect {
         exclude 'META-INF/LICENSE*'
         exclude 'META-INF/NOTICE*'

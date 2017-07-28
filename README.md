@@ -47,7 +47,6 @@ these steps to setup the project directory.
 
   ```
   ./gradlew idea
-  ./gradlew genIntellijRuns
   ```
 2.  Open the project folder with Intellij, and import the Gradle project
   when prompted.
@@ -83,6 +82,20 @@ followed by *Other* for the Application type.
 4.  Download the json credentials by clicking the following icon for your
   project: ![Download json](download_json.png)
 
+5.  Run the YouTube Chat jar from a terminal to obtain authorization credentials,
+pasting the client ID JSON when prompted:
+
+```
+java -jar ytchat-1.0.3.jar login
+```
+
+If you want to clear your credentials or sign in as a different user, run logout:
+
+```
+java -jar ytchat-1.0.3.jar logout
+```
+
+Credentials are be saved to ~/.oauth-credentials.
 
 ## Configuration
 

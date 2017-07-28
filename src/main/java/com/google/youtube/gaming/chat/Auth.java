@@ -31,10 +31,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Collection;
-import org.apache.commons.io.FileUtils;
 
 /**
  * Contains methods for authorizing a user and caching credentials.
@@ -84,8 +81,22 @@ public class Auth {
   public static void clearCredentials() throws IOException {
     File directory = new File(getCredentialsDirectory());
     if (directory.exists()) {
-      FileUtils.deleteDirectory(directory);
+      deleteDirectory(directory);
     }
+  }
+
+  private static boolean deleteDirectory(File path) {
+    if (path.exists()) {
+      File[] files = path.listFiles();
+      for(int i=0; i < files.length; i++) {
+        if(files[i].isDirectory()) {
+          deleteDirectory(files[i]);
+        } else {
+          files[i].delete();
+        }
+      }
+    }
+    return path.delete();
   }
 
   private static String getCredentialsDirectory() {
