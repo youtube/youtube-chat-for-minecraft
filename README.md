@@ -83,7 +83,7 @@ followed by *Other* for the Application type.
   project: ![Download json](download_json.png)
 
 5.  Run the YouTube Chat jar from a terminal to obtain authorization credentials,
-pasting the client ID JSON when prompted:
+pasting the json credentials when prompted:
 
 ```
 java -jar ytchat-1.0.3.jar login
@@ -95,7 +95,7 @@ If you want to clear your credentials or sign in as a different user, run logout
 java -jar ytchat-1.0.3.jar logout
 ```
 
-Credentials are be saved to ~/.oauth-credentials.
+Credentials are saved to ~/.oauth-credentials.
 
 ## Configuration
 
