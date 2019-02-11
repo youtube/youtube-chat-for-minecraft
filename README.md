@@ -8,14 +8,14 @@ services. This is not an official Google product.
 *  Broadcasts live chat messages to multiple clients from a single network
   connection
 *  Provides author details (channelId, displayName, isChatModerator, isChatOwner
-   isChatSponser, profileImageUrl) and SuperChat details
+   isChatSponsor, profileImageUrl) and SuperChat details
 *  In-game configuration
 
 ## Workspace setup
 
 Clone this repository, and open a terminal to the root directory. Navigate to
 [http://files.minecraftforge.net](http://files.minecraftforge.net) and pick
-the latest or recommened MDK version. Update the mdkVersion definition in
+the latest or recommended MDK version. Update the mdkVersion definition in
 setup.gradle, then run the installMdk task:
 
   ```
